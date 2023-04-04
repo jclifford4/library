@@ -17,11 +17,11 @@ function displayAllBooks() {
 }
 
 // Check methods are working.
-const book1 = new Book("a", "b", "c");
-const book2 = new Book("c", "d", "e");
+const book1 = new Book('a', 'b', 'c');
+const book2 = new Book('c', 'd', 'e');
 
 addBookToLibrary(book1);
 addBookToLibrary(book2);
-console.log(myLibrary);
-
-displayAllBooks();
+const displayBooksButton = document.querySelector('button');
+console.log(displayBooksButton);
+displayBooksButton.addEventListener('click', displayAllBooks);
