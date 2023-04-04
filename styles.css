@@ -12,7 +12,15 @@ header {
   justify-content: center;
 }
 
-.display-button {
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.display-button,
+.add-button {
   height: 40px;
   width: 100px;
   border-radius: 5px;
@@ -33,20 +41,21 @@ main {
 
 .book-list {
   display: grid;
-  gap: 8px;
-  grid-template: 200px / repeat(auto-fill, 150px);
-  grid-auto-rows: 200px;
-  grid-auto-columns: 150px;
+  row-gap: 8px;
+  column-gap: 8px;
+  grid-template: 250px / repeat(auto-fill, 300px);
+  grid-auto-rows: 250px;
+  grid-auto-columns: 300px;
   align-items: center;
   justify-content: center;
   padding: 8px;
-
-  width: calc(80dvw - 20px);
+  padding-top: 64px;
+  width: calc(75dvw - 20px);
   height: calc(100% - 40px);
   border: 2px white solid;
 }
 
 .book {
-  height: 200px;
+  height: 250px;
   border: 1px black solid;
 }
