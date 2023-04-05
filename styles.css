@@ -39,8 +39,6 @@ header {
 }
 
 main {
-  border: 1px red solid;
-  /* height: max(100dvh, calc(100dvh - 100px)); */
   min-height: calc(100dvh - 160px);
   display: flex;
   flex-direction: column;
@@ -53,11 +51,12 @@ main {
   display: flex;
   position: fixed;
   flex-direction: column;
-  height: 100dvh;
+  height: 94dvh;
   width: 100dvw;
   align-items: center;
   justify-content: start;
-  background-color: teal;
+  background-color: #303633;
+  opacity: 0.98;
 }
 
 .form-container {
@@ -184,7 +183,6 @@ label {
   padding-top: 64px;
   width: calc(90dvw - 20px);
   height: max(auto, calc(100% - 40px));
-  border: 2px black solid;
 }
 
 .active-book {
@@ -204,7 +202,6 @@ label {
   grid-row: 1 / 3;
   align-self: center;
   justify-self: center;
-  background-color: yellow;
   font-weight: 600;
   font-size: 1.5rem;
   text-align: center;
@@ -269,7 +266,6 @@ footer {
   padding: 0;
   margin: 0;
   height: 100%;
-  border: 1px green solid;
   display: flex;
   flex-direction: column;
   flex: 1;
