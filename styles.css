@@ -279,3 +279,19 @@ footer > .links {
   height: 55px;
   gap: 16px;
 }
+
+.link-1 img {
+  height: 30px;
+  width: 30px;
+}
+
+.link-2 img {
+  height: 35px;
+  width: 35px;
+
+  border-radius: 50%;
+}
+
+.links a {
+  object-fit: fill;
+}
