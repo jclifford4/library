@@ -40,6 +40,128 @@ main {
   background-color: #303633;
 }
 
+.form-popup {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  height: 100dvh;
+  width: 100dvw;
+  align-items: center;
+  justify-content: start;
+  background-color: teal;
+}
+
+.form-container {
+  border: 1px black solid;
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  margin-top: 200px;
+  height: 300px;
+  width: 500px;
+  background-color: #eeeeee;
+  border-radius: 10px;
+}
+
+label {
+  font-size: 1.2rem;
+}
+
+.form-container > h1 {
+  grid-column: 1 / 5;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.form-container > .title-wrap {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container > .author-wrap {
+  grid-column: 3 / 5;
+  grid-row: 2 / 3;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container > .genre-wrap {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container > .pages-wrap {
+  grid-column: 3 / 5;
+  grid-row: 3 / 4;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container > .read-wrap {
+  grid-column: 1 / 5;
+  grid-row: 4 / 5;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+}
+
+.button-cancel {
+  position: absolute;
+
+  justify-self: end;
+  margin-right: 8px;
+  margin-top: 8px;
+}
+
+.form-container input {
+  height: 25px;
+  width: 200px;
+}
+
+.read-wrap > .read {
+  width: 60px;
+  height: 30px;
+}
+
+.pages-wrap > .pages {
+  width: 100px;
+}
+
+.form-container > .submit {
+  grid-column: 2 / 4;
+  align-self: center;
+  justify-self: center;
+  margin-bottom: 8px;
+}
+
 .book-list {
   display: grid;
   row-gap: 18px;

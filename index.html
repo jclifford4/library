@@ -8,6 +8,37 @@
     <title>Document</title>
   </head>
   <body>
+    <div class="form-popup">
+      <form action="get" class="form-container">
+        <h1>Enter Book Information</h1>
+
+        <div class="title-wrap">
+          <label for="title">Title</label>
+          <input type="text" name="title" class="title" required />
+        </div>
+
+        <div class="author-wrap">
+          <label for="author">Author</label>
+          <input type="text" name="author" class="author" required />
+        </div>
+        <div class="pages-wrap">
+          <label for="pages">Pages</label>
+          <input type="number" name="pages" class="pages" required />
+        </div>
+        <div class="genre-wrap">
+          <label for="genre">Genre</label>
+          <input type="text" name="genre" class="genre" required />
+        </div>
+        <div class="read-wrap">
+          <label for="read">I have read</label>
+          <input type="button" name="read" type="radio" class="read" />
+        </div>
+        <button type="submit" class="submit">Submit</button>
+        <button type="button" class="button-cancel" onclick="closeForm()">
+          ❌
+        </button>
+      </form>
+    </div>
     <header>
       <div class="display-button-wrapper">
         <div class="buttons">

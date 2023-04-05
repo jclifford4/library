@@ -1,12 +1,14 @@
 let activeBookLibrary = [];
-const displayBooksButton = document.querySelector('button');
+const displayBooksButton = document.querySelector('.display-button');
 const addButton = document.querySelector('.add-button');
 const bookList = document.querySelector('.book-list');
+const popUpForm = document.querySelector('.form-popup');
+const popUpSubmit = document.querySelector('.submit');
+popUpForm.style.display = 'none';
 let allActiveBookDivs;
 let books;
 const html = document.querySelector('html');
 let deleteButtons;
-console.log(deleteButtons);
 
 function Book(title, author, genre, pages, read) {
   this.title = title;
@@ -16,56 +18,54 @@ function Book(title, author, genre, pages, read) {
   this.read = read;
 }
 
+// Always update the DOM element classes.
 html.addEventListener('mouseover', (e) => {
-  books = document.querySelectorAll('.active-book');
-  // console.log(books);
-  if (books !== undefined) {
-    books.forEach((book) => {
-      book.addEventListener('mouseleave', () => {
-        let bk = activeBookLibrary.find(
-          (element) => element.title === book.childNodes[0].innerHTML
-        );
-        let index = activeBookLibrary.indexOf(bk);
-        console.log(index);
-        // if (bk !== -1)
-        //   book.classList.replace(`${book.classList[1]}`, `book-${bk}`);
-        // console.log(book.childNodes[0].innerHTML);
-        // let first = book.classList[1];
-        // console.log(bk);
-        // let cls = book.classList[1].substring(0, 4) + `${bk}`;
-        // book.classList.replace(`${first}`, `${cls}`);
-        // console.log(cls);
-      });
-    });
-  }
-});
+  allActiveBookDivs = document.querySelectorAll('.active-book'); // get all displayed books
+  deleteButtons = document.querySelectorAll('.delete-button'); // get all delete buttons
 
-addButton.addEventListener('mouseleave', (e) => {
-  deleteButtons = document.querySelectorAll('.delete-button');
+  // For every delete button on the DOM
   deleteButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      removeBookFromDOM(button);
-    });
+    // If it isn't active, make it active and add a click listener
+    if (!button.classList.contains('active')) {
+      button.classList.add('active');
+      button.addEventListener('click', () => {
+        removeBookFromDOM(button);
+      });
+    }
   });
 });
 
-addButton.addEventListener('click', (e) => {
-  const currentEmptyBook = createBook(); // Create an empty book object.
-  const currentBookData = fillOutBookInfo(currentEmptyBook); // Ask user to fill out book data.
-  // console.log(currentBookData);
-  addBookToLibrary(currentBookData);
-  populateBookToBookList(currentBookData); // Visually add the book to the list.
+// Prevent submit button default behavior
+popUpSubmit.addEventListener('click', function (event) {
+  event.preventDefault();
+});
 
-  allActiveBookDivs = document.querySelectorAll('.active-book'); // Querey all displayed books.
+// Listener for pop up submit algorithm. To get book data and display.
+popUpSubmit.addEventListener('click', () => {
+  const currentEmptyBook = createBook(); // Create an empty book object.
+  currentBookData = getBookInfoFromUserInput(currentEmptyBook);
+  addBookToLibrary(currentBookData);
+  closeForm();
+  populateBookToBookList(currentBookData); // Visually add the book to the list.
+  // Querey all displayed books.
+});
+
+// Open popup form on click from add button
+addButton.addEventListener('click', (e) => {
+  openForm();
 });
 
 displayBooksButton.addEventListener('click', displayAllBooks);
 
+// Add book to library array
 function addBookToLibrary(book) {
   activeBookLibrary.push(book);
 }
 
-function deleteBookFromLibrary(book) {}
+function deleteBookFromLibrary(activeLibrary, startIndex, numberOfItems = 1) {
+  activeBookLibrary.splice(startIndex, numberOfItems);
+}
+
 function displayAllBooks() {
   console.table(activeBookLibrary);
 }
@@ -95,13 +95,15 @@ function createBookDiv(currentBookData) {
   return bookDiv;
 }
 
-// Fill out book data, return it.
-function fillOutBookInfo(book) {
-  book.author = 'Roald Dahl';
-  book.title = `James and the Giant Peach${activeBookLibrary.length}`;
-  book.genre = 'Fiction';
-  book.pages = 160;
-  book.read = true;
+// Get data from form inputs, return it.
+function getBookInfoFromUserInput(book) {
+  let bookInfoInputs = document.querySelectorAll('input');
+  console.log(bookInfoInputs);
+  book.title = bookInfoInputs[0].value;
+  book.author = bookInfoInputs[1].value;
+  book.pages = bookInfoInputs[2].value;
+  book.genre = bookInfoInputs[3].value;
+  book.read = bookInfoInputs[4].value;
   return book;
 }
 
@@ -129,8 +131,8 @@ function appendDeleteBookButtonToCurrentBookDiv(bookdiv) {
 function removeBookFromDOM(button) {
   let book = findBookInArray(button);
   let index = activeBookLibrary.indexOf(book);
-  // console.log(index);
-  activeBookLibrary.splice(index, 1);
+
+  deleteBookFromLibrary(activeBookLibrary, index);
   button.parentNode.remove();
 }
 
@@ -139,4 +141,23 @@ function findBookInArray(button) {
   return activeBookLibrary.find(
     (element) => element.title === button.parentNode.childNodes[0].innerHTML
   );
+}
+
+// Popup form becomes visible
+function openForm() {
+  popUpForm.style.display = 'flex';
+  setFormInputsToEmpty();
+}
+
+// Remove form from DOM visibility.
+function closeForm() {
+  popUpForm.style.display = 'none';
+}
+
+// Default inputs to empty
+function setFormInputsToEmpty() {
+  let bookInfoInputs = document.querySelectorAll('input');
+  bookInfoInputs.forEach((inputField) => {
+    inputField.value = '';
+  });
 }
