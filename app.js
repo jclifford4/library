@@ -168,6 +168,10 @@ function deleteBookFromLibrary(activeLibrary, startIndex, numberOfItems = 1) {
 
 function displayAllBooks() {
   console.table(activeBookLibrary);
+
+  deleteButtons.forEach((button) => {
+    removeBookFromDOM(button);
+  });
 }
 
 // Create Empty Book
@@ -180,7 +184,6 @@ function createBook() {
 function populateBookToBookList(currentBookData) {
   const currentBookDiv = createBookDiv(currentBookData); // Create a new book div in the DOM.
   bookList.appendChild(currentBookDiv); // append to the DOM
-  // compactBookCacurrentReadButtons();
 }
 
 // Create the Book Div, return it.
