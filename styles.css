@@ -18,6 +18,7 @@ header {
   justify-content: center;
   padding: 0;
   margin: 0;
+  position: relative;
 }
 
 .buttons {
@@ -28,7 +29,8 @@ header {
 }
 
 .display-button,
-.add-button {
+.add-button,
+.compact-button {
   height: 40px;
   width: 100px;
   border-radius: 5px;
@@ -36,6 +38,17 @@ header {
   border: 1px black solid;
   background-color: teal;
   color: whitesmoke;
+}
+
+.add-button,
+.compact-button {
+  position: absolute;
+  margin-right: 120px;
+  margin-top: 200px;
+}
+
+.compact-button {
+  margin-left: 220px;
 }
 
 main {
@@ -56,6 +69,7 @@ main {
   align-items: center;
   justify-content: start;
   background-color: #303633;
+
   opacity: 0.98;
 }
 
@@ -143,7 +157,6 @@ label {
 
 .button-cancel {
   position: absolute;
-
   justify-self: end;
   margin-right: 8px;
   margin-top: 8px;
@@ -172,7 +185,7 @@ label {
 
 .book-list {
   display: grid;
-  row-gap: 18px;
+  row-gap: 8px;
   column-gap: 8px;
   grid-template: 250px / repeat(auto-fill, 300px);
   grid-auto-rows: 250px;
@@ -180,9 +193,16 @@ label {
   align-items: center;
   justify-content: center;
   padding: 8px;
-  padding-top: 64px;
+  padding-top: 32px;
+  padding-bottom: 32px;
   width: calc(90dvw - 20px);
   height: max(auto, calc(100% - 40px));
+  /* border: 1px black solid; */
+  -webkit-box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
+  margin-top: 100px;
+  transition: grid ease-in-out 0.75s;
 }
 
 .active-book {
@@ -195,6 +215,7 @@ label {
   -moz-box-shadow: 4px 17px 20px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 17px 20px -6px rgba(0, 0, 0, 0.75);
   background-color: #eeeeee;
+  transition: width ease-in-out 0.5s, height ease-in-out 0.75s;
 }
 
 .data-div0 {
@@ -203,7 +224,7 @@ label {
   align-self: center;
   justify-self: center;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 

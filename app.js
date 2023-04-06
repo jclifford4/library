@@ -4,6 +4,9 @@ const addButton = document.querySelector('.add-button');
 const bookList = document.querySelector('.book-list');
 const popUpForm = document.querySelector('.form-popup');
 const popUpSubmit = document.querySelector('.submit');
+const compactViewButton = document.querySelector('.compact-button');
+compactViewButton.classList.add('off');
+const bookListGrid = document.querySelector('.book-list');
 
 popUpForm.style.display = 'none';
 let allActiveBookDivs;
@@ -20,17 +23,76 @@ function Book(title, author, genre, pages, read = false) {
   this.read = read;
 }
 
+function compactBookCacurrentReadButtons() {
+  if (allActiveBookDivs.length < 1) compactViewButton.disabled = true;
+  else compactViewButton.disabled = false;
+
+  if (
+    allActiveBookDivs.length > 0 &&
+    compactViewButton.classList.contains('active')
+  ) {
+    allActiveBookDivs.forEach((bookCacurrentReadButton) => {
+      bookCacurrentReadButton.style.width = '175px';
+      bookCacurrentReadButton.style.height = '100px';
+      bookListGrid.style.gridTemplateColumns = 'repeat(auto-fill, 175px)';
+      bookListGrid.style.gridTemplateRows = '100px';
+      bookListGrid.style.gridTemplateRows = '100px';
+      bookListGrid.style.gridAutoRows = '100px';
+    });
+
+    deleteButtons.forEach((button) => {
+      button.style.height = '100%';
+      button.style.width = '70%';
+    });
+  } else if (
+    allActiveBookDivs.length > 0 &&
+    compactViewButton.classList.contains('off')
+  ) {
+    allActiveBookDivs.forEach((bookCacurrentReadButton) => {
+      bookCacurrentReadButton.style.width = '300px';
+      bookCacurrentReadButton.style.height = '250px';
+      bookListGrid.style.gridTemplateColumns = 'repeat(auto-fill, 300px)';
+      bookListGrid.style.gridTemplateRows = '250px';
+      bookListGrid.style.gridAutoRows = '250px';
+    });
+
+    deleteButtons.forEach((button) => {
+      button.style.height = '60%';
+      button.style.width = '50%';
+    });
+  }
+}
+
 function getBookFromTitle(form) {
   return activeBookLibrary.find((book) => {
     return book.title === form.childNodes[1].childNodes[1].value;
   });
 }
 
+compactViewButton.addEventListener('click', () => {
+  if (compactViewButton.classList.contains('off')) {
+    compactViewButton.classList.add('active');
+    compactViewButton.classList.remove('off');
+  } else {
+    compactViewButton.classList.add('off');
+    compactViewButton.classList.remove('active');
+  }
+
+  compactBookCacurrentReadButtons();
+});
+
 // Always update the DOM element classes.
 html.addEventListener('mouseover', (e) => {
   allActiveBookDivs = document.querySelectorAll('.active-book'); // get all displayed books
   deleteButtons = document.querySelectorAll('.delete-button'); // get all delete buttons
   readButtons = document.querySelectorAll('.read');
+
+  if (
+    compactViewButton.classList.contains('active') ||
+    compactViewButton.classList.contains('off')
+  ) {
+    compactBookCacurrentReadButtons();
+  }
 
   readButtons.forEach((button) => {
     if (!button.classList.contains('active')) {
@@ -118,6 +180,7 @@ function createBook() {
 function populateBookToBookList(currentBookData) {
   const currentBookDiv = createBookDiv(currentBookData); // Create a new book div in the DOM.
   bookList.appendChild(currentBookDiv); // append to the DOM
+  // compactBookCacurrentReadButtons();
 }
 
 // Create the Book Div, return it.
@@ -130,6 +193,7 @@ function createBookDiv(currentBookData) {
     })}`
   );
   createBookDataDivs(bookDiv, currentBookData);
+  compactBookCacurrentReadButtons();
   return bookDiv;
 }
 
@@ -162,13 +226,13 @@ function getBookInfoFromUserInput(book) {
 function createBookDataDivs(bookDiv, currentBookData) {
   for (let i = 0; i < Object.keys(currentBookData).length; i++) {
     if (i === 4) {
-      const rd = document.createElement('button');
-      rd.classList.add(`data-div${i}`);
-      rd.classList.add('read');
+      const currentReadButton = document.createElement('button');
+      currentReadButton.classList.add(`data-div${i}`);
+      currentReadButton.classList.add('read');
       let readWrap = document.querySelector('.read-wrap');
-      rd.style.backgroundColor = `${readWrap.childNodes[3].style.backgroundColor}`;
-      rd.classList.add(`${readWrap.childNodes[3].classList[2]}`);
-      bookDiv.appendChild(rd);
+      currentReadButton.style.backgroundColor = `${readWrap.childNodes[3].style.backgroundColor}`;
+      currentReadButton.classList.add(`${readWrap.childNodes[3].classList[2]}`);
+      bookDiv.appendChild(currentReadButton);
     } else {
       const currentBookDataDiv = document.createElement('div');
       currentBookDataDiv.classList.add(`data-div${i}`);
