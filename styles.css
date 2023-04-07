@@ -86,10 +86,6 @@ main {
   opacity: 0.98;
 }
 
-/* .form-popup .read {
-  background-color: red;
-} */
-
 .form-container {
   border: 1px black solid;
   display: grid;
@@ -185,8 +181,10 @@ label {
 }
 
 .read-wrap > .read {
-  width: 60px;
+  width: 30px;
   height: 30px;
+  border-radius: 50%;
+  border: 1px solid black;
 }
 
 .pages-wrap > .pages {

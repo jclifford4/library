@@ -102,15 +102,11 @@ html.addEventListener('mouseover', (e) => {
     // If not labeled as active, set active
     if (!button.classList.contains('active')) {
       button.classList.add('active');
+      readButtons[0].style.backgroundColor = 'red';
     }
 
     // If already active, change based on click context (color, bool)
     if (button.classList.contains('active')) {
-      if (!button.parentElement.classList.contains('active-book')) {
-        button.classList.add('off');
-        button.style.backgroundColor = 'red';
-      }
-
       button.addEventListener('click', () => {
         let book = findBookInArray(button);
         if (button.parentNode.classList.contains('active-book'))
@@ -164,7 +160,7 @@ addButton.addEventListener('click', (e) => {
   openForm();
 });
 
-displayBooksButton.addEventListener('click', displayAllBooks);
+displayBooksButton.addEventListener('click', deleteAllBooks);
 
 // Add book to library array
 function addBookToLibrary(book) {
@@ -175,9 +171,7 @@ function deleteBookFromLibrary(activeLibrary, startIndex, numberOfItems = 1) {
   activeBookLibrary.splice(startIndex, numberOfItems);
 }
 
-function displayAllBooks() {
-  console.table(activeBookLibrary);
-
+function deleteAllBooks() {
   deleteButtons.forEach((button) => {
     removeBookFromDOM(button);
   });
