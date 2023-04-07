@@ -94,12 +94,21 @@ html.addEventListener('mouseover', (e) => {
     compactBookCacurrentReadButtons();
   }
 
+  if (readButtons.length === 1) {
+  }
+
+  // For everybutton add a listener
   readButtons.forEach((button) => {
+    // If not labeled as active, set active
     if (!button.classList.contains('active')) {
+      button.classList.add('active');
+    }
+
+    // If already active, change based on click context (color, bool)
+    if (button.classList.contains('active')) {
       if (!button.parentElement.classList.contains('active-book')) {
         button.classList.add('off');
         button.style.backgroundColor = 'red';
-        button.classList.add('active');
       }
 
       button.addEventListener('click', () => {
@@ -220,8 +229,6 @@ function getBookInfoFromUserInput(book) {
       return {};
     }
   }
-
-  console.log(bookInfoInputs);
   return book;
 }
 

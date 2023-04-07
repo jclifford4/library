@@ -44,7 +44,7 @@ header {
 .add-button,
 .compact-button {
   position: absolute;
-  margin-right: 120px;
+  margin-right: 200px;
   margin-top: 200px;
 }
 
@@ -286,6 +286,13 @@ label {
 
 .data-div4:hover {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.data-div0,
+.data-div1,
+.data-div2,
+.data-div3 {
+  word-wrap: break-word;
 }
 
 .delete-button {
