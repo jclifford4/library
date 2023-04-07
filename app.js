@@ -7,6 +7,7 @@ const popUpSubmit = document.querySelector('.submit');
 const compactViewButton = document.querySelector('.compact-button');
 compactViewButton.classList.add('off');
 const bookListGrid = document.querySelector('.book-list');
+const formBox = document.querySelector('.form-container');
 
 popUpForm.style.display = 'none';
 let allActiveBookDivs;
@@ -22,6 +23,42 @@ function Book(title, author, genre, pages, read = false) {
   this.pages = pages;
   this.read = read;
 }
+
+// readButtons[0].target.addEventListener('mouseover', updateButtonColor());
+
+function updateButtonColor() {
+  // For everybutton add a listener
+  readButtons.forEach((button) => {
+    // If not labeled as active, set active
+    if (!button.classList.contains('active')) {
+      button.classList.add('active');
+      readButtons[0].style.backgroundColor = 'red';
+    }
+
+    // If already active, change based on click context (color, bool)
+    if (button.classList.contains('active')) {
+      button.addEventListener('click', () => {
+        let book = findBookInArray(button);
+        if (button.parentNode.classList.contains('active-book'))
+          book.read = !book.read;
+
+        if (button.classList.contains('on')) {
+          button.classList.remove('on');
+          button.classList.add('off');
+          button.style.backgroundColor = 'red';
+        } else if (button.classList.contains('off')) {
+          button.classList.remove('off');
+          button.classList.add('on');
+          button.style.backgroundColor = 'green';
+        }
+      });
+    }
+  });
+}
+
+formBox.addEventListener('mouseover', () => {
+  updateButtonColor();
+});
 
 function compactBookCacurrentReadButtons() {
   if (allActiveBookDivs.length < 1) compactViewButton.disabled = true;
@@ -87,43 +124,14 @@ html.addEventListener('mouseover', (e) => {
   deleteButtons = document.querySelectorAll('.delete-button'); // get all delete buttons
   readButtons = document.querySelectorAll('.read');
 
+  updateButtonColor();
+
   if (
     compactViewButton.classList.contains('active') ||
     compactViewButton.classList.contains('off')
   ) {
     compactBookCacurrentReadButtons();
   }
-
-  if (readButtons.length === 1) {
-  }
-
-  // For everybutton add a listener
-  readButtons.forEach((button) => {
-    // If not labeled as active, set active
-    if (!button.classList.contains('active')) {
-      button.classList.add('active');
-      readButtons[0].style.backgroundColor = 'red';
-    }
-
-    // If already active, change based on click context (color, bool)
-    if (button.classList.contains('active')) {
-      button.addEventListener('click', () => {
-        let book = findBookInArray(button);
-        if (button.parentNode.classList.contains('active-book'))
-          book.read = !book.read;
-
-        if (button.classList.contains('on')) {
-          button.classList.remove('on');
-          button.classList.add('off');
-          button.style.backgroundColor = 'red';
-        } else if (button.classList.contains('off')) {
-          button.classList.remove('off');
-          button.classList.add('on');
-          button.style.backgroundColor = 'green';
-        }
-      });
-    }
-  });
 
   // For every delete button on the DOM
   deleteButtons.forEach((button) => {
