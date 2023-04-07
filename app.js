@@ -99,9 +99,9 @@ html.addEventListener('mouseover', (e) => {
       if (!button.parentElement.classList.contains('active-book')) {
         button.classList.add('off');
         button.style.backgroundColor = 'red';
+        button.classList.add('active');
       }
 
-      button.classList.add('active');
       button.addEventListener('click', () => {
         let book = findBookInArray(button);
         if (button.parentNode.classList.contains('active-book'))
