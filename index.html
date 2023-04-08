@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,900;1,100&display=swap"
+      rel="stylesheet"
+    />
+    <title>Library</title>
   </head>
   <body>
     <div class="form-popup">
@@ -14,32 +20,59 @@
 
         <div class="title-wrap">
           <label for="title">Title</label>
-          <input type="text" name="title" class="title" required />
+          <input
+            type="text"
+            name="title"
+            class="title"
+            placeholder="Dune"
+            required
+          />
         </div>
 
         <div class="author-wrap">
           <label for="author">Author</label>
-          <input type="text" name="author" class="author" required />
+          <input
+            type="text"
+            name="author"
+            class="author"
+            placeholder="Frank Herbert"
+            required
+          />
         </div>
         <div class="pages-wrap">
           <label for="pages">Pages</label>
-          <input type="number" name="pages" class="pages" required />
+          <input
+            type="number"
+            name="pages"
+            class="pages"
+            placeholder="896"
+            required
+          />
         </div>
         <div class="genre-wrap">
           <label for="genre">Genre</label>
-          <input type="text" name="genre" class="genre" required />
+          <input
+            type="text"
+            name="genre"
+            class="genre"
+            placeholder="Fiction"
+            required
+          />
         </div>
         <div class="read-wrap">
-          <label for="read">I have read</label>
+          <label class="read-label" for="read">Unread</label>
           <input type="button" name="read" class="read off" />
         </div>
-        <button type="submit" class="submit">Submit</button>
+        <button type="submit" class="submit">Save↪️</button>
         <button type="button" class="button-cancel" onclick="closeForm()">
           ❌
         </button>
       </form>
     </div>
     <header>
+      <div class="info">
+        <div class="library-txt">Library</div>
+      </div>
       <div class="display-button-wrapper">
         <div class="buttons">
           <button class="add-button">Add +</button>
@@ -53,14 +86,14 @@
     </main>
     <footer>
       <div class="links">
-        <h4>Made by Joseph Clifford</h4>
+        <div class="info">Made by Joseph Clifford</div>
         <div class="link-1">
           <a href="https://www.linkedin.com/in/jclifford4" target="_blank"
             ><img src="./images/linked-in.png" alt="" class="linked-in"
           /></a>
         </div>
         <div class="link-2">
-          <a href="https://www.github.com/jclifford4" target="_blank"
+          <a href="https://github.com/jclifford4/library" target="_blank"
             ><img src="./images/git.png" alt="" class="git"
           /></a>
         </div>

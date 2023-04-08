@@ -3,6 +3,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', 'Times New Roman', Times, serif;
 }
 
 body {
@@ -12,13 +13,26 @@ body {
 header {
   width: 100dvw;
   height: 100px;
-  background-color: beige;
+  background-color: #ffe3e3;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   margin: 0;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', Times, serif;
+  font-weight: 500;
+  font-size: 3rem;
+}
+
+header .info {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: absolute;
 }
 
 .buttons {
@@ -36,8 +50,8 @@ header {
   border-radius: 5px;
   border-style: none;
   border: 1px black solid;
-  background-color: teal;
-  color: whitesmoke;
+  background-color: #ffe3e3;
+  color: black;
 }
 
 .display-button,
@@ -46,6 +60,7 @@ header {
   position: absolute;
   margin-right: 200px;
   margin-top: 200px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .compact-button {
@@ -58,10 +73,8 @@ header {
   border-radius: 5px;
   border-style: none;
   border: 1px black solid;
-  background-color: teal;
-  color: whitesmoke;
   margin-left: 420px;
-  background-color: red;
+  background-color: #ef3054;
 }
 
 main {
@@ -157,11 +170,12 @@ label {
 }
 
 .form-container > .read-wrap {
-  grid-column: 1 / 5;
+  grid-column: 1 / 3;
   grid-row: 4 / 5;
   align-self: center;
   justify-self: center;
   display: flex;
+  gap: 4px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -181,9 +195,9 @@ label {
 }
 
 .read-wrap > .read {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
   border: 1px solid black;
 }
 
@@ -192,10 +206,12 @@ label {
 }
 
 .form-container > .submit {
-  grid-column: 2 / 4;
+  grid-column: 3 / 5;
   align-self: center;
   justify-self: center;
-  margin-bottom: 8px;
+  margin-top: 8px;
+  width: 100px;
+  height: 25px;
 }
 
 .book-list {
@@ -218,6 +234,7 @@ label {
   box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
   margin-top: 100px;
   transition: grid ease-in-out 0.75s;
+  border-radius: 5px;
 }
 
 .active-book {
@@ -238,8 +255,9 @@ label {
   grid-row: 1 / 3;
   align-self: center;
   justify-self: center;
-  font-weight: 600;
-  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1;
+  font-size: 1.1rem;
   text-align: center;
 }
 
@@ -248,7 +266,7 @@ label {
   align-self: center;
   justify-self: center;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -257,7 +275,7 @@ label {
   align-self: center;
   justify-self: center;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -266,7 +284,7 @@ label {
   align-self: center;
   justify-self: center;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -276,9 +294,10 @@ label {
   align-self: center;
   justify-self: center;
 
-  height: 60%;
+  height: 20px;
   width: 100px;
-  border-radius: 20px;
+  margin-bottom: 2px;
+  border-radius: 5px;
   border: 1px black solid;
 }
 
@@ -296,8 +315,11 @@ label {
 .delete-button {
   grid-column: 4 / 5;
   grid-row: 5 / 6;
-  height: 60%;
-  width: 50%;
+  height: 20%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   align-self: center;
   justify-self: center;
   background-color: #303633;
@@ -325,6 +347,10 @@ footer > .links {
   align-items: center;
   height: 55px;
   gap: 16px;
+}
+
+.links .info {
+  font-size: 0.8rem;
 }
 
 .link-1 img {

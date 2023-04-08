@@ -8,6 +8,7 @@ const compactViewButton = document.querySelector('.compact-button');
 compactViewButton.classList.add('off');
 const bookListGrid = document.querySelector('.book-list');
 const formBox = document.querySelector('.form-container');
+let readLabel = document.querySelector('.read-label');
 
 popUpForm.style.display = 'none';
 let allActiveBookDivs;
@@ -32,7 +33,7 @@ function updateButtonColor() {
     // If not labeled as active, set active
     if (!button.classList.contains('active')) {
       button.classList.add('active');
-      readButtons[0].style.backgroundColor = 'red';
+      readButtons[0].style.backgroundColor = '#EF3054';
     }
 
     // If already active, change based on click context (color, bool)
@@ -45,11 +46,13 @@ function updateButtonColor() {
         if (button.classList.contains('on')) {
           button.classList.remove('on');
           button.classList.add('off');
-          button.style.backgroundColor = 'red';
+          button.style.backgroundColor = '#EF3054';
+          readLabel.textContent = 'Unread';
         } else if (button.classList.contains('off')) {
           button.classList.remove('off');
           button.classList.add('on');
-          button.style.backgroundColor = 'green';
+          button.style.backgroundColor = '#23CE6B';
+          readLabel.textContent = 'Read';
         }
       });
     }
@@ -248,7 +251,14 @@ function createBookDataDivs(bookDiv, currentBookData) {
     } else {
       const currentBookDataDiv = document.createElement('div');
       currentBookDataDiv.classList.add(`data-div${i}`);
-      currentBookDataDiv.textContent = `${Object.values(currentBookData)[i]}`;
+
+      if (i === 3) {
+        currentBookDataDiv.textContent = `${
+          Object.values(currentBookData)[i]
+        } pp.`;
+      } else
+        currentBookDataDiv.textContent = `${Object.values(currentBookData)[i]}`;
+
       bookDiv.appendChild(currentBookDataDiv);
     }
   }
